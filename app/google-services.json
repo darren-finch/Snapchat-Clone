@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "726391712313",
+    "firebase_url": "https://snapchatoreo-9ab93.firebaseio.com",
+    "project_id": "snapchatoreo-9ab93",
+    "storage_bucket": "snapchatoreo-9ab93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726391712313:android:7bc2e7f0b4fd99a18e3be8",
+        "android_client_info": {
+          "package_name": "com.example.snapchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726391712313-flk0drti08csrp8cspjkjqp801orpml0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAshZxibGQn3wxyPbIsSxdbLU8EuVAdxW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726391712313-flk0drti08csrp8cspjkjqp801orpml0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
