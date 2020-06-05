@@ -17,6 +17,7 @@ class SignInActivity : AppCompatActivity()
     private lateinit var auth: FirebaseAuth
     private lateinit var emailInput: EditText
     private lateinit var passwordInput: EditText
+    private lateinit var usernameInput: EditText
 
     private lateinit var database: DatabaseReference
 
@@ -26,6 +27,8 @@ class SignInActivity : AppCompatActivity()
         setContentView(R.layout.activity_sign_in)
         emailInput = findViewById(R.id.emailInput)
         passwordInput = findViewById(R.id.passwordInput)
+        usernameInput = findViewById(R.id.usernameInput)
+
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
@@ -60,7 +63,8 @@ class SignInActivity : AppCompatActivity()
                             {
                                 // Sign in success, update UI with the signed-in user's information
                                 val user = auth.currentUser
-                                createUser(auth.currentUser?.uid.toString(), email, password)
+                                var username = usernameInput.text.toString()
+                                createUser(auth.currentUser?.uid.toString(), email, username)
                                 Log.d(SIGN_IN_TAG, "createUserWithEmail:success")
                                 signIn(user)
                             }
@@ -82,10 +86,11 @@ class SignInActivity : AppCompatActivity()
         startActivity(intent)
     }
 
-    fun createUser(userID: String, email: String, password: String)
+    fun createUser(userID: String, email: String, username: String)
     {
         //Create new user and put him in the database
         database.child("users").child(userID).child("email").setValue(email)
+        database.child("users").child(userID).child("username").setValue(username)
     }
 
     companion object {

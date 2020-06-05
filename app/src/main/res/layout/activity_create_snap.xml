@@ -15,50 +15,53 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:color/holo_red_light" />
-
-    <EditText
-        android:id="@+id/messageInput"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="328dp"
-        android:ems="10"
-        android:hint="Message..."
-        android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageInput">
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
 
-        <Button
-            android:id="@+id/nextButton2"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/messageInput"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:onClick="sendMessage"
-            android:text="Choose Image" />
+            android:background="#A6000000"
+            android:ems="10"
+            android:hint="Message..."
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
 
-        <Button
-            android:id="@+id/nextButton"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="sendMessage"
-            android:text="Send" />
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/chooseImage"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseImage"
+                android:text="Choose Image" />
+
+            <Button
+                android:id="@+id/nextButton"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="sendMessage"
+                android:text="Send" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

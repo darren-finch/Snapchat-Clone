@@ -62,37 +62,37 @@ class CreateSnapActivity : AppCompatActivity()
     fun sendMessage(view: View)
     {
         // Get the data from an ImageView as bytes
-        imageView?.isDrawingCacheEnabled = true
-        imageView?.buildDrawingCache()
-        val bitmap = (imageView?.drawable as BitmapDrawable).bitmap
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val data = baos.toByteArray()
+        if(imageView?.drawable != null)
+        {
+            imageView?.isDrawingCacheEnabled = true
+            imageView?.buildDrawingCache()
+            val bitmap = (imageView?.drawable as BitmapDrawable).bitmap
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
 
-        var ref = FirebaseStorage.getInstance().reference.child("images").child(imageName)
-        var uploadTask = ref.putBytes(data)
+            var ref = FirebaseStorage.getInstance().reference.child("images").child(imageName)
+            var uploadTask = ref.putBytes(data)
 
-        val urlTask = uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
+            val urlTask = uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
                 }
-            }
-            ref.downloadUrl
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val downloadUri = task.result
-                Toast.makeText(baseContext, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
+                ref.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
 
-                Log.i("URL", downloadUri.toString())
-
-                var intent = Intent(this, ChooseUserActivity::class.java)
-                intent.putExtra("imageURL", downloadUri.toString())
-                intent.putExtra("imageName", imageName)
-                intent.putExtra("message", messageInput?.text.toString())
-                startActivity(intent)
-            } else {
-                Toast.makeText(baseContext, "Failed to upload image.", Toast.LENGTH_SHORT).show()
+                    var intent = Intent(this, ChooseUserActivity::class.java)
+                    intent.putExtra("imageURL", downloadUri.toString())
+                    intent.putExtra("imageName", imageName)
+                    intent.putExtra("message", messageInput?.text.toString())
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(baseContext, "Failed to upload image.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
